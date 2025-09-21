@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <title>登入</title>
+</head>
+<body>
+<h2>登入</h2>
+<form th:action="@{/login}" method="post">
+	<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
+    <label>Email:</label><input type="text" name="email" required/> <br/>
+    <label>密碼:</label><input type="password" name="password" required/> <br/>
+    <button type="submit">登入</button>
+</form>
+<a th:href="@{/register}">註冊</a>
+</body>
+</html>

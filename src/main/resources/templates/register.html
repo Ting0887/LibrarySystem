@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>註冊</title>
+</head>
+<body>
+<h2>註冊</h2>
+<form th:action="@{/register}" th:object="${user}" method="post">
+	<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+    <label>名稱:</label>
+    	<input type="text" th:field="*{userName}" required/> <br/>
+    <label>Email:</label>
+    	<input type="email" th:field="*{email}" required/> <br/>
+    <label>密碼:</label>
+    	<input type="password" th:field="*{password}" required/> <br/>
+    <button type="submit">註冊</button>
+</form>
+<p th:text="${error}"></p>
+</body>
+</html>
