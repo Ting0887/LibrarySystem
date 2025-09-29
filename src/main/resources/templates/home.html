@@ -1,11 +1,14 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <title>首頁</title>
+    <link th:href="@{/css/main.css}" rel="stylesheet" />
 </head>
 <body>
-<h2>歡迎來到 Library System</h2>
+<div th:if="${userName != null}">
+	<h2 th:text="'歡迎' + ${userName} + '來到 Library System'"></h2>
+</div>
 
 <div sec:authorize="hasRole('ROLE_ADMIN')">
     <a href="/admin/book_list">管理圖書</a>

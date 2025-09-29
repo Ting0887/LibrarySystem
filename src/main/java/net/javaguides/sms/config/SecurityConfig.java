@@ -37,23 +37,20 @@ public class SecurityConfig {
 	
 	@Bean
 	public SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception{
-		httpSecurity.authorizeHttpRequests(auth -> auth.
-				requestMatchers(HttpMethod.GET, "/", "/register", "/login", "/css/**").permitAll()
-				.requestMatchers(HttpMethod.POST, "/register").permitAll()
-				.requestMatchers("/admin/**").hasRole("ADMIN")
-				.requestMatchers("/user/**").hasRole("USER")
-				.anyRequest().authenticated()
-		).formLogin(form -> form
-                .loginPage("/login")
-                .usernameParameter("email")
-                .passwordParameter("password")
-                .defaultSuccessUrl("/home", true)
-                .permitAll())
-		.logout(logout -> logout
-                        .logoutUrl("/logout")
-                        .logoutSuccessUrl("/login?logout")
-                        .permitAll()
-                    );
-		return httpSecurity.build();
+		 httpSecurity
+         .authorizeHttpRequests(auth -> auth
+             .requestMatchers("/register", "/signin", "/login", "/doLogin", "/css/**").permitAll()
+             .requestMatchers("/admin/**").hasRole("ADMIN")
+             .requestMatchers("/user/**").hasRole("USER")
+             .anyRequest().authenticated()
+         )
+         .formLogin(form -> form.disable()) // 禁用 Spring Security 自帶 formLogin
+         .logout(logout -> logout
+             .logoutUrl("/logout")
+             .logoutSuccessUrl("/login?logout")
+             .permitAll()
+         );
+
+     return httpSecurity.build();
 	}
 }
