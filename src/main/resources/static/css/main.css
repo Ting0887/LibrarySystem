@@ -1,6 +1,165 @@
-.showError p{
-	color : red;
-};
-.showMessage p{
-	color : blue;
+body {
+    font-family: Arial, sans-serif;
+    background: #f5f7fa;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+header {
+	width: 100%;
+	display: block;
+    background-color: #000;
+    color: #fff;
+    padding: 2px 20px;
+    font-size: 16px;
+    position: fixed;
+    font-weight: bold;
+    border-bottom: 1px solid #333;
+    box-sizing: border-box;
+    top: 0;
+    left: 0;
+    z-index: 100;
+}
+
+header .header-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* 如果 header 裡有導覽列 */
+header nav a {
+    color: #fff;
+    margin: 0 10px;
+    text-decoration: none;
+}
+
+header nav a:hover {
+    color: #00aaff; /* hover 藍色 */
+}
+
+.home-container {
+    max-width: 1200px;      /* 比登入表單寬一些 */
+    margin: 80px auto 20px; /* 上方留出 header 空間 */
+    padding: 20px;
+    text-align: center;     /* 文字置中 */
+}
+
+.home-container a {
+    display: inline-block;
+    margin: 10px;
+    padding: 10px 20px;
+    background-color: #00aaff;
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+}
+
+.home-container a:hover {
+    background-color: #0088cc;
+}
+
+/* 卡片容器 */
+.auth-container {
+    background: white;
+    padding: 30px 40px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    width: 350px;
+    text-align: center;
+}
+
+/* 標題 */
+.auth-container h2 {
+    margin-bottom: 20px;
+    color: #333;
+}
+
+/* 輸入框 */
+.auth-container input[type="text"],
+.auth-container input[type="password"],
+.auth-container input[type="email"] {
+    width: 100%;
+    padding: 10px;
+    margin: 8px 0 16px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+/* 按鈕 */
+.auth-container button {
+    width: 100%;
+    padding: 12px;
+    background: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.auth-container button:hover {
+    background: #45a049;
+}
+
+.auth-container div {
+    display: flex;
+    align-items: center; /* 垂直置中 */
+    margin-bottom: px;
+}
+
+.auth-container label {
+    width: 60px; /* 固定寬度讓欄位對齊 */
+    margin-right: 1px;
+}
+
+.auth-container input {
+    flex: 1;
+    padding: 2px;
+}
+
+/* 錯誤訊息 */
+.showError p {
+    color: red;
+    font-size: 14px;
+    margin: 0 0 10px 0;
+}
+
+/* 成功訊息 */
+.showMessage p {
+    color: blue;
+    font-size: 14px;
+    margin: 0 0 10px 0;
+}
+
+/* 底部連結 */
+.auth-container .links {
+    margin-top: 15px;
+    font-size: 14px;
+}
+
+.auth-container .links a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.auth-container .links a:hover {
+    text-decoration: underline;
+}
+
+.input-group {
+    position: relative;
+    margin-bottom: 15px;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 10px 5px;
+    box-sizing: border-box;
 }

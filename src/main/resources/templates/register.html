@@ -6,33 +6,36 @@
     <link th:href="@{/css/main.css}" rel="stylesheet" />
 </head>
 <body>
-<h2>註冊</h2>
-<form th:action="@{/register}" th:object="${user}" method="post">
-	<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
-	<div>
-		<label>名稱:</label>
-    	<input type="text" th:field="*{userName}" required/> <br/>
-	</div>
-	<div>
-		<label>Email:</label>
-    	<input type="email" th:field="*{email}" required/> <br/>
-	</div>
-    <div>
-	    <label>密碼:</label>
-    	<input type="password" th:field="*{password}" required/> <br/>
-    </div>
-    <div>
-	    <label>確認密碼:</label>
-    	<input type="password" th:field="*{confirmPassword}" required/> <br/>
-    </div>
-    <div class="showError">
-	    <p th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></p>
-    	<p th:if="${error != null}" th:text="${error}"></p>
-	    <p th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></p>
-        <p th:if="${#fields.hasErrors('confirmPassword')}" th:errors="*{confirmPassword}"></p>
-    	<p th:if="${passwordError != null}" th:text="${passwordError}"></p>
-    </div>
-    <button type="submit">註冊</button>
-</form>
+<div th:replace="header :: header"></div>
+<div class="auth-container">
+	<h2>註冊</h2>
+	<form th:action="@{/register}" th:object="${user}" method="post">
+		<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+		<div class="input-group">
+			<label>名稱:</label>
+	    	<input type="text" th:field="*{userName}" required/> <br/>
+		</div>
+		<div class="input-group">
+			<label>Email:</label>
+	    	<input type="email" th:field="*{email}" required/> <br/>
+		</div>
+	    <div class="input-group">
+		    <label>密碼:</label>
+	    	<input type="password" th:field="*{password}" required/> <br/>
+	    </div>
+	    <div class="input-group">
+		    <label>確認密碼:</label>
+	    	<input type="password" th:field="*{confirmPassword}" required/> <br/>
+	    </div>
+	    <div class="showError">
+		    <p th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></p>
+	    	<p th:if="${error != null}" th:text="${error}"></p>
+		    <p th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></p>
+	        <p th:if="${#fields.hasErrors('confirmPassword')}" th:errors="*{confirmPassword}"></p>
+	    	<p th:if="${passwordError != null}" th:text="${passwordError}"></p>
+	    </div>
+	    <button type="submit">註冊</button>
+	</form>
+</div>
 </body>
 </html>

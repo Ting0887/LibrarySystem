@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+    <header>
+    	<div class="header-container">
+	    	<h1>我的圖書管理系統</h1>
+	        <nav>
+	            <a th:href="@{/home}">首頁</a>
+	            <a th:href="@{/signin}" th:if="${userName == null}">登入</a>
+	            <a th:href="@{/logout}" th:if="${userName != null}">登出</a>
+	            <a th:href="@{/register}">註冊</a>
+	        </nav>
+    	</div>
+    </header>
+</body>
+</html>

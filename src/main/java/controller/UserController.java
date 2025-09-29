@@ -195,7 +195,7 @@ public class UserController {
 
         model.addAttribute("user", new User());
         model.addAttribute("message", "密碼已更新，請重新登入。");
-        return "redirect:/signin";
+        return "redirect:/signin?resetSuccess=true";
     }
 
     // 登入成功後導向

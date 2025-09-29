@@ -6,18 +6,18 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
     <link th:href="@{/css/main.css}" rel="stylesheet" />
 </head>
 <body>
-<div th:if="${userName != null}">
-	<h2 th:text="'歡迎' + ${userName} + '來到 Library System'"></h2>
+<div th:replace="header :: header"></div>
+<div class="home-container">
+	<div th:if="${userName != null}">
+		<h2 th:text="'歡迎' + ${userName} + '來到 Library System'"></h2>
+	</div>
+	<div sec:authorize="hasRole('ROLE_ADMIN')">
+	    <a href="/admin/book_list">管理圖書</a>
+	</div>
+	<div sec:authorize="hasRole('ROLE_USER')">
+	    <a href="/user/borrow_history">我的借閱紀錄</a>
+	</div>
+	<a th:href="@{/logout}">登出</a>
 </div>
-
-<div sec:authorize="hasRole('ROLE_ADMIN')">
-    <a href="/admin/book_list">管理圖書</a>
-</div>
-
-<div sec:authorize="hasRole('ROLE_USER')">
-    <a href="/user/borrow_history">我的借閱紀錄</a>
-</div>
-
-<a th:href="@{/logout}">登出</a>
 </body>
 </html>
