@@ -1,3 +1,6 @@
 .showError p{
 	color : red;
+};
+.showMessage p{
+	color : blue;
 }

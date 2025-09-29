@@ -3,7 +3,6 @@ package net.javaguides.sms.config;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -11,12 +10,13 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 import service.CustomUserDetailsService;
 
 @Configuration
 @EnableWebSecurity
-public class SecurityConfig {
+public class SecurityConfig{
 	
 	@Autowired
     private CustomUserDetailsService userDetailsService;
@@ -39,7 +39,8 @@ public class SecurityConfig {
 	public SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception{
 		 httpSecurity
          .authorizeHttpRequests(auth -> auth
-             .requestMatchers("/register", "/signin", "/login", "/doLogin", "/css/**").permitAll()
+             .requestMatchers("/register", "/signin", "/login", "/doLogin", 
+            		 "/resetpassword", "/forgotpassword", "/css/**").permitAll()
              .requestMatchers("/admin/**").hasRole("ADMIN")
              .requestMatchers("/user/**").hasRole("USER")
              .anyRequest().authenticated()
@@ -47,7 +48,8 @@ public class SecurityConfig {
          .formLogin(form -> form.disable()) // 禁用 Spring Security 自帶 formLogin
          .logout(logout -> logout
              .logoutUrl("/logout")
-             .logoutSuccessUrl("/login?logout")
+             .logoutRequestMatcher(new AntPathRequestMatcher("/logout", "GET"))
+             .logoutSuccessUrl("/signin?logout")
              .permitAll()
          );
 
